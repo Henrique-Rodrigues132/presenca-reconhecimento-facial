@@ -1,0 +1,57 @@
+{
+  "expo": {
+    "name": "Presenca Facial",
+    "slug": "presenca-facial",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#0B5FFF"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "O aplicativo precisa de acesso à galeria para selecionar a foto facial do cadastro.",
+        "NSCameraUsageDescription": "O aplicativo precisa da câmera para capturar a foto facial do cadastro."
+      }
+    },
+    "android": {
+      "package": "com.presencafacial.app",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo precisa de acesso às suas fotos para selecionar a imagem facial do cadastro.",
+          "cameraPermission": "O aplicativo precisa da câmera para capturar a foto facial do cadastro."
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "O aplicativo usa a câmera para o reconhecimento facial e o cadastro de pessoas."
+        }
+      ],
+      "react-native-fast-tflite",
+      "expo-asset",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "minSdkVersion": 24
+          }
+        }
+      ]
+    ]
+  }
+}

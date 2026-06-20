@@ -1,0 +1,37 @@
+{
+  "name": "presenca-facial",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-ml-kit/face-detection": "^2.0.1",
+    "expo": "~52.0.0",
+    "expo-asset": "~11.0.5",
+    "expo-build-properties": "~0.13.3",
+    "expo-camera": "~16.0.18",
+    "expo-dev-client": "~5.0.20",
+    "expo-file-system": "~18.0.12",
+    "expo-image-manipulator": "~13.0.6",
+    "expo-image-picker": "~16.0.6",
+    "expo-status-bar": "~2.0.1",
+    "expo-system-ui": "~4.0.9",
+    "firebase": "^11.3.1",
+    "jpeg-js": "^0.4.4",
+    "react": "18.3.1",
+    "react-native": "0.76.9",
+    "react-native-fast-tflite": "^3.0.1",
+    "react-native-nitro-modules": "^0.35.9"
+  },
+  "devDependencies": {
+    "@types/react": "~18.3.12",
+    "typescript": "^5.3.3"
+  },
+  "private": true
+}
