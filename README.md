@@ -203,6 +203,35 @@ npx expo start --dev-client
 
 > **iOS:** exige conta Apple Developer e, em geral, macOS/EAS. O foco do protótipo é Android.
 
+## Solução de problemas (importante)
+
+### Versão do `react-native-fast-tflite` (compatibilidade com Expo SDK 52 / RN 0.76)
+Usamos **`react-native-fast-tflite@1.6.1`** de propósito. As versões **3.x** do fast-tflite usam
+o `react-native-nitro-modules`, que **não compila no React Native 0.76** (Expo SDK 52) — o build
+do EAS falha em `:react-native-nitro-modules:compileDebugKotlin` com erro de `ReactModuleInfo`
+(o nitro 0.35 espera uma API de um RN mais novo). A versão **1.6.1 é baseada em JSI puro, não usa
+nitro**, e compila normalmente no RN 0.76. **Não atualize o fast-tflite para 3.x** sem antes subir
+o Expo SDK.
+
+### `Failed to get NitroModules: ... could not be found` (caso volte a aparecer)
+Esse erro só aparece se o `react-native-fast-tflite@3.x`/`react-native-nitro-modules` voltar a ser
+instalado. Garanta que o `package.json` tenha `react-native-fast-tflite@^1.6.1` e **não** tenha
+`react-native-nitro-modules`. De forma geral, sempre que mudar dependências/plugins nativos,
+**reconstrua o dev client** e **reinstale o APK** no celular:
+
+```bash
+npx expo install --fix
+eas build --profile development --platform android   # gera um APK novo
+#   -> desinstale o APK antigo e instale o novo no celular
+npx expo start -c --dev-client                       # -c limpa o cache do Metro
+```
+
+Depois disso, leia o QR Code **pelo app dev client novo** (nunca pelo Expo Go).
+
+### `PluginError: Failed to resolve plugin for module "expo-camera"`
+Significa que o `expo-camera` (ou outro plugin do `app.json`) não está instalado. Rode
+`npx expo install expo-camera` e confira com `npm ls expo-camera` (não pode retornar `(empty)`).
+
 ## Como configurar Firebase Authentication e Firestore
 
 No [Console do Firebase](https://console.firebase.google.com/) do projeto

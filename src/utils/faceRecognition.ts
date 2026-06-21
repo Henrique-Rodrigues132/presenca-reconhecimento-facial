@@ -49,7 +49,6 @@ export async function loadFaceModels(): Promise<void> {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     model = await loadTensorflowModel(
       require('../../assets/models/mobilefacenet.tflite'),
-      [],
     );
   })();
   try {
@@ -140,8 +139,9 @@ export async function getFaceDescriptorFromImage(uri: string): Promise<Descripto
   const input = buildInputTensor(decoded, face.frame);
 
   // 5. Inferência → embedding de 192 dimensões.
-  const outputs = model.runSync([input.buffer as ArrayBuffer]);
-  const embedding = Array.from(new Float32Array(outputs[0]));
+  // A API do fast-tflite v1 recebe e devolve TypedArray diretamente.
+  const outputs = model.runSync([input]);
+  const embedding = Array.from(outputs[0] as Float32Array);
   const descriptor = l2normalize(embedding);
 
   return { ok: true, descriptor, face };
