@@ -11,6 +11,7 @@ cadastrados para informar se a pessoa é **cadastrada** ou **não cadastrada**. 
 
 - **Henrique Rodrigues**
 - **Kaio Ramos**
+- **Carlos Leonel**
 
 ## Objetivo acadêmico
 
